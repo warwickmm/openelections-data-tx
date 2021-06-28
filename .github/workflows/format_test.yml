@@ -1,0 +1,32 @@
+name: Format Tests
+
+on:
+  push:
+    branches: "*"
+  pull_request:
+    branches: "*"
+
+jobs:
+  unit_tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Check out source
+      uses: actions/checkout@v2.3.4
+
+    - name: Check out format tests
+      uses: actions/checkout@v2.3.4
+      with:
+        repository: warwickmm/openelections-format-tests
+        path: "${RUNNER_TEMP}"
+
+    - name: Run format tests
+      run: python3 "${RUNNER_TEMP}"/openelections-format-tests/run_tests.py "${GITHUB_WORKSPACE}"
