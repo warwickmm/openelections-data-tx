@@ -21,6 +21,8 @@ jobs:
 
     - name: Check out source
       uses: actions/checkout@v2.3.4
+      with:
+        path: data
 
     - name: Check out format tests
       uses: actions/checkout@v2.3.4
@@ -29,4 +31,4 @@ jobs:
         path: format_tests
 
     - name: Run format tests
-      run: python3 format_tests/openelections-format-tests/run_tests.py "${GITHUB_WORKSPACE}"
+      run: python3 ${{ github.workspace }}/format_tests/run_tests.py ${{ github.workspace }}/data
