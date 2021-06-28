@@ -31,4 +31,4 @@ jobs:
         path: format_tests
 
     - name: Run format tests
-      run: python3 ${{ github.workspace }}/format_tests/format_tests/run_tests.py ${{ github.workspace }}/data
+      run: python3 ${{ github.workspace }}/format_tests/run_tests.py ${{ github.workspace }}/data
